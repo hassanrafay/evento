@@ -11,6 +11,35 @@ const User = require("./models/user");
 const port = 3000;
 const app = express();
 
+const user = (userId) => {
+  return User.findById(userId)
+    .then((user) => {
+      return {
+        ...user._doc,
+        _id: user.id,
+        createdEvents: events.bind(this, user._doc.createdEvents),
+      };
+    })
+    .catch((err) => {
+      throw err;
+    });
+};
+
+const events = (eventIds) => {
+  return Event.find({ _id: { $in: eventIds } })
+    .then((events) => {
+      return events.map((event) => {
+        return {
+          ...event._doc,
+          _id: event.id,
+          creator: user.bind(this, event.creator),
+        };
+      });
+    })
+    .catch((err) => {
+      throw err;
+    });
+};
 mongoose
   .connect("mongodb://localhost:27017/event-booking", {
     useNewUrlParser: true,
@@ -32,11 +61,13 @@ app.use(
         description: String!
         price: Float!
         date: String!
+        creator: User!
     }
     type User {
       _id: ID!
       email: String!
       password: String
+      createdEvents: [Event!]
     }
     input EventInput {
         title: String!
@@ -64,7 +95,11 @@ app.use(
         return Event.find()
           .then((events) => {
             return events.map((event) => {
-              return { ...event._doc, _id: event.id };
+              return {
+                ...event._doc,
+                _id: event.id,
+                creator: user.bind(this, event._doc.creator),
+              };
             });
           })
           .catch((err) => {
@@ -83,7 +118,11 @@ app.use(
         return event
           .save()
           .then((result) => {
-            createdEvent = { ...result._doc, _id: result.id };
+            createdEvent = {
+              ...result._doc,
+              _id: result.id,
+              creator: user.bind(this, result._doc.creator),
+            };
             return User.findById("5f39f741c7aae10fe92a8b39");
           })
           .then((user) => {
