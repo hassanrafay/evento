@@ -15,7 +15,7 @@
 .main-navigation__logo h1 {
   margin: 0;
   font-size: 1.5rem;
-  color: #dfcefc;
+  color: #ffffff;
 }
 
 .main-navigation__items {
@@ -54,5 +54,6 @@
 .main-navigation__items button:active {
   background: #ffffff;
   color: #5101d1;
-  border-radius: 5px;
+  padding: 12px;
+  border-radius: 4px;
 }
