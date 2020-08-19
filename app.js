@@ -7,7 +7,7 @@ const graphQLSchema = require("./graphql/schema/index");
 const graphQLResolvers = require("./graphql/resolvers/index");
 const isAuthenticated = require("./middlewares/isAuthenticated");
 
-const port = 3000;
+const port = 8000;
 const app = express();
 app.use(isAuthenticated);
 app.use(bodyParser.json());
