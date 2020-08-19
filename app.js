@@ -9,8 +9,18 @@ const isAuthenticated = require("./middlewares/isAuthenticated");
 
 const port = 8000;
 const app = express();
-app.use(isAuthenticated);
+
 app.use(bodyParser.json());
+app.use(isAuthenticated);
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST,GET,OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+  next();
+});
 
 mongoose
   .connect("mongodb://localhost:27017/event-booking", {
