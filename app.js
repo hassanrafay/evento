@@ -5,9 +5,12 @@ const { graphqlHTTP } = require("express-graphql");
 
 const graphQLSchema = require("./graphql/schema/index");
 const graphQLResolvers = require("./graphql/resolvers/index");
+const isAuthenticated = require("./middlewares/isAuthenticated");
 
 const port = 3000;
 const app = express();
+app.use(isAuthenticated);
+app.use(bodyParser.json());
 
 mongoose
   .connect("mongodb://localhost:27017/event-booking", {
