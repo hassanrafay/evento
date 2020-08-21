@@ -3,20 +3,21 @@
   background: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   position: fixed;
-  top: 20vh;
+  top: 15vh;
   left: 5%;
   z-index: 100;
 }
 
 .modal__header {
-  padding: 1rem;
+  padding: 1.55rem;
   background: #5101d1;
   color: white;
 }
 
 .modal__header h1 {
   margin: 0;
-  font-size: 1.25rem;
+  font-size: 1.55rem;
+  font-weight: 600;
 }
 
 .modal__content {

@@ -7,7 +7,7 @@ body {
 .form-control label,
 .form-control input,
 .form-control textarea {
-  width: 100%;
+  width: 95%;
   display: block;
 }
 
@@ -18,7 +18,8 @@ body {
 .form-control {
   margin-bottom: 1rem;
 }
-.form-control input {
+.form-control input,
+.form-control textarea {
   padding: 10px;
 }
 
