@@ -4,7 +4,7 @@ const { transformEvent, transformBooking } = require("./helper");
 
 module.exports = {
   bookings: async (args, req) => {
-    if (req.isAuth) {
+    if (!req.isAuth) {
       throw new Error("UnAuthenticated");
     }
     try {
@@ -17,7 +17,7 @@ module.exports = {
     }
   },
   bookEvent: async (args, req) => {
-    if (req.isAuth) {
+    if (!req.isAuth) {
       throw new Error("UnAuthenticated");
     }
     const fetchedEvent = await Event.findById({ _id: args.eventId });
@@ -30,7 +30,7 @@ module.exports = {
     return transformBooking(result);
   },
   cancelBooking: async (args, req) => {
-    if (req.isAuth) {
+    if (!req.isAuth) {
       throw new Error("UnAuthenticated");
     }
     try {
