@@ -1,8 +1,9 @@
 .events-control {
   text-align: center;
   border: 1px solid #5101d1;
-  padding: 1rem;
+  padding: 2.2rem 1rem 2.2rem 1rem;
   margin: 4rem auto;
-  width: 30rem;
-  max-width: 80%;
+  margin-bottom: 0;
+  width: 38rem;
+  max-width: 90%;
 }
