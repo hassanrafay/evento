@@ -74,7 +74,6 @@ class EventsPage extends Component {
     };
 
     const token = this.context.token;
-
     fetch("http://localhost:8000/graphql", {
       method: "POST",
       body: JSON.stringify(requestBody),
@@ -173,7 +172,7 @@ class EventsPage extends Component {
       this.setState({ selectedEvent: null });
       return;
     }
-    console.log(this.state.selectedEvent);
+    console.log("Token: ", this.context.token);
     const requestBody = {
       query: `
           mutation BookEvent($id: ID!) {
@@ -189,12 +188,13 @@ class EventsPage extends Component {
       },
     };
 
+    const token = this.context.token;
     fetch("http://localhost:8000/graphql", {
       method: "POST",
       body: JSON.stringify(requestBody),
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer " + this.context.token,
+        Authorization: "Bearer " + token,
       },
     })
       .then((res) => {
